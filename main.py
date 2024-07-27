@@ -39,6 +39,7 @@ async def ping():
 
 @app.post("/chat")
 async def chat(message: Message):
+    print(message)
     result = Message(role="MVLUBOT")
 
     if message.message.lower() in message_cache:

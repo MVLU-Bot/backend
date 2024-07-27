@@ -31,7 +31,7 @@ class MVLUBot():
 
         self.qa_prompt = ChatPromptTemplate.from_template(self.qa_template)
 
-        self.rag_chain = rag_chain = (
+        self.rag_chain  = (
             RunnableParallel(context=self.retriever | self.format_docs, question=RunnablePassthrough()) |
             self.qa_prompt |
             self.llm
