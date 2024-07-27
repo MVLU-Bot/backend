@@ -39,22 +39,22 @@ async def ping():
 
 @app.post("/chat")
 async def chat(message: Message):
-    print(message)
-    result = Message(role="MVLUBOT")
 
     if message.message.lower() in message_cache:
-        result.message = message_cache[message.message.lower()]
-        return result
+        return Message(
+            role="MVLUBOT",
+            message=message_cache[message.message.lower()]
 
-    try:
-        output = mvlubot.chat(message.message)
-        result.message = output
+        )
 
-    except:
-        raise HTTPException(
-            status_code=500, detail="Oops, it seems that something went wrong on our side.")
+    # try:
+    return mvlubot.chat(message)
+       
+    # except:
+    #     raise HTTPException(
+    #         status_code=500, detail="Oops, it seems that something went wrong on our side.")
 
-    return result
+    # return result
 
 
 if __name__ == "__main__":
